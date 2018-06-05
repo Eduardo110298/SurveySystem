@@ -7,15 +7,35 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 ?>
 
 <!DOCTYPE html>
-<html>
+<html ng-app="SurveySystem">
 <head>
-	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resources/angularjs/1.6.10/angular.min.js"></script>
 	<script src="resources/jquery/3.3.1/jquery-3.3.1.min.js"></script>
+	<script src="resources/angularjs/1.6.10/angular.min.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
+	<!--link rel="stylesheet" type="text/css" href="styles.css"-->
+	<style>
+		#content{
+			background-image: url('assets/background-3.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	</style>
+	<script src="app/SurveySystem.js"></script>
+	<script src="app/controllers/SessionController.js"></script>
+
+
 	<title>Encuesta ULA - UDO</title>
 </head>
-<body>
-	INDEX
+<body id="content">
+	<div class="container text-center">
+		<div>
+			<img src="assets/ula.png" alt="" height="200">
+			<img src="assets/udo.png" alt="" width="200">
+		</div>
+		<div ng-controller="SessionController" class="text-center">
+			<button ng-click="logout()" class="btn btn-primary">Cerrar Sesion</button>
+		</div>
+	</div>
 </body>
 </html>

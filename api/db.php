@@ -24,23 +24,16 @@ class DB {
     *Returns rows from any sql query
     *
     */
-    public function query($s1ql){ //ejecuta una consulta que devuelve resultado de la bd. Los get.
+    public function query($sql){ //ejecuta una consulta que devuelve resultado de la bd. Los get.
 
-        $sql = "SELECT * FROM usuario";
         $result = $this->db->query($sql);
-        if ($result->num_rows > 0) {     
+        if ($result->num_rows == 1) {     
+            $data = $result->fetch_row();
+        }elseif ($result->num_rows > 1){
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }
-		// //echo $sql;
-  //       $query = $this->db->prepare($sql);
-		
-  //       $query->execute();
-        
-  //       if($query->rowCount() > 0){
-  //           $data = $query->fetchAll(PDO::FETCH_ASSOC);
-  //       }
         return !empty($data) ? $data : false;
-    } 
+    }
 
     public function exec($sql){// ejecuta una consulta que no devuelve resultado
 

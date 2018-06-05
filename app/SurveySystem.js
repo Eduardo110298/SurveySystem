@@ -1,11 +1,12 @@
 var app = angular.module("SurveySystem",[]);
-app.factory("$webService", function($http){
-	this.login = function(username, password){
-		var body = {
-			user: username,
-			pass: password
-		}
-		return $http.post("api/Login.php", body)
+app.factory("$webService", function($http, $window){
+	this.login = function(user){
+		return $http.post("api/Login.php", user);
 	}
+	
+	this.logout = function(){
+		$window.location.href = "logout.php";
+	}
+
 	return this;
 });

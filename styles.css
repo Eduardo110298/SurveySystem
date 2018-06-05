@@ -1,3 +1,9 @@
 .center{
 	text-align: center;
 }
+
+#content{
+	background: black;
+	background-repeat: no-repeat;
+	background-size: auto;
+}
