@@ -1,7 +1,11 @@
 app.controller("LoginController", function($scope, $webService) {
    jQuery("#mybutton").click(function(){
-   		var mivar = $webService.login("eduardo","contrasegura").then(function(data){
-   			console.log(data);
+   		$webService.login("eduardo","contrasegura")
+   		.then(function(response){
+   			console.log(response);
+   		})
+   		.catch(function(error){
+
    		});
 
    }); 

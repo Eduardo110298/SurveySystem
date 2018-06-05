@@ -13,7 +13,7 @@ if(isset($_SESSION['user'])){
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
-	<script src="app/App.js"></script>
+	<script src="app/SurveySystem.js"></script>
 	<script src="app/controllers/LoginController.js"></script>
 
 
@@ -26,7 +26,7 @@ if(isset($_SESSION['user'])){
 			<img src="assets/udo.png" alt="" width="200">
 		</div>
 		<div ng-controller="LoginController">
-			<button id="mybutton"></button>
+			<button id="mybutton">prueba</button>
 		</div>
 	</div>
 </body>
