@@ -27,9 +27,9 @@ class DB {
     public function query($s1ql){ //ejecuta una consulta que devuelve resultado de la bd. Los get.
 
         $sql = "SELECT * FROM usuario";
-        $result = $conexion->query($sql);
+        $result = $this->db->query($sql);
         if ($result->num_rows > 0) {     
-            $data = $result->fetch_array(MYSQLI_ASSOC);
+            $data = $result->fetch_all(MYSQLI_ASSOC);
         }
 		// //echo $sql;
   //       $query = $this->db->prepare($sql);

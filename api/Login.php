@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require('db.php')
+require('db.php');
 $db = new DB();
-$data = $db->query("a")
+$data = $db->query("a");
 
 // $data = json_decode(file_get_contents('php://input'));
 
