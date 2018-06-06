@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2018 a las 04:42:20
+-- Tiempo de generación: 06-06-2018 a las 23:11:28
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -93,13 +93,33 @@ CREATE TABLE `respuesta` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `respuesta_alumno`
+--
+
+CREATE TABLE `respuesta_alumno` (
+  `id_usuario` varchar(12) COLLATE utf8_bin NOT NULL,
+  `id_opcion` int(11) NOT NULL,
+  `id_pregunta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `rol` (
   `id` int(50) NOT NULL,
-  `rol` varchar(30) COLLATE utf8_bin NOT NULL DEFAULT 'usuario'
+  `rol` varchar(30) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id`, `rol`) VALUES
+(1, 'estudiante'),
+(2, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -122,11 +142,18 @@ CREATE TABLE `usuario` (
   `nombre` varchar(20) COLLATE utf8_bin NOT NULL,
   `apellido` varchar(20) COLLATE utf8_bin NOT NULL,
   `nombre_usuario` varchar(12) COLLATE utf8_bin NOT NULL,
-  `clave` varchar(8) COLLATE utf8_bin NOT NULL,
+  `clave` varchar(255) COLLATE utf8_bin NOT NULL,
   `pregunta` varchar(100) COLLATE utf8_bin NOT NULL,
-  `respuesta` varchar(100) COLLATE utf8_bin NOT NULL,
-  `id_rol` int(50) NOT NULL
+  `respuesta` varchar(255) COLLATE utf8_bin NOT NULL,
+  `id_rol` int(50) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`nombre`, `apellido`, `nombre_usuario`, `clave`, `pregunta`, `respuesta`, `id_rol`) VALUES
+('Administrador', 'Principal', 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de Usuario', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 2);
 
 -- --------------------------------------------------------
 
@@ -181,6 +208,14 @@ ALTER TABLE `pregunta`
 ALTER TABLE `respuesta`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_encuestaFK` (`id_encuesta`);
+
+--
+-- Indices de la tabla `respuesta_alumno`
+--
+ALTER TABLE `respuesta_alumno`
+  ADD PRIMARY KEY (`id_usuario`,`id_opcion`),
+  ADD KEY `id_opcion_resp_FK` (`id_opcion`),
+  ADD KEY `id_preg_resp` (`id_pregunta`);
 
 --
 -- Indices de la tabla `rol`
@@ -242,7 +277,7 @@ ALTER TABLE `respuesta`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
@@ -265,6 +300,14 @@ ALTER TABLE `opciones`
 --
 ALTER TABLE `respuesta`
   ADD CONSTRAINT `id_encuestaFK` FOREIGN KEY (`id_encuesta`) REFERENCES `encuesta` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuesta_alumno`
+--
+ALTER TABLE `respuesta_alumno`
+  ADD CONSTRAINT `id_opcion_resp_FK` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id_opcion`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_preg_resp` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_respFK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`nombre_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `rol_item`
