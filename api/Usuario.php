@@ -25,7 +25,7 @@
 
 		function register(){
 			$data = $this->data;
-			$sql = "INSERT INTO usuario(nombre,apellido,nombre_usuario,clave,pregunta,respuesta) VALUES('$data->firstName','$data->lastName','$data->user','$data->pass','$data->question','$data->answer')";
+			$sql = "INSERT INTO usuario(nombre,apellido,nombre_usuario,clave,pregunta,respuesta) VALUES('$data->firstName','$data->lastName','$data->user',PASSWORD('$data->pass'),'$data->question','$data->answer')";
 			$result = $this->exec($sql);
 			echo json_encode($result);
 		}

@@ -17,7 +17,12 @@ app.controller("SessionController", function($scope, $webService, $window) {
 	$scope.submitRegistryData = function(){
 		$webService.register($scope.newUser)
 		.then(function(response){
-			console.log(response)
+			if(response.data.success){
+				alert("Registro exitoso!")
+				$window.location.href = "login.php"
+			}else{
+				alert("Ha ocurrido un error inesperado.")
+			}
 		})
 		.catch(function(error){
 
@@ -27,7 +32,6 @@ app.controller("SessionController", function($scope, $webService, $window) {
 	$scope.submitLoginData = function(){
 		$webService.login($scope.user)
    		.then(function(response){
-   			console.log(response)
    			if(response.data.found){
    				$window.location.href = "index.php"
    			}else{
