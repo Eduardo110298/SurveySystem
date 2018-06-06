@@ -27,12 +27,9 @@ class DB {
     public function query($sql){ //ejecuta una consulta que devuelve resultado de la bd. Los get.
 
         $result = $this->db->query($sql);
-        // if ($result->num_rows == 1) {     
-        //     $data = $result->fetch_row();
-        // }elseif ($result->num_rows > 1){
-        //     $data = $result->fetch_all(MYSQLI_ASSOC);
-        // }
-        if ($result->num_rows > 0) {
+        if ($result->num_rows == 1) {     
+            $data = $result->fetch_row();
+        }elseif ($result->num_rows > 1){
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }
         return !empty($data) ? $data : false;
