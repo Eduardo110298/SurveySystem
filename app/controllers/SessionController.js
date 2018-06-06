@@ -7,11 +7,12 @@ app.controller("SessionController", function($scope, $webService, $window) {
 	$scope.submit = function(){
 		$webService.login($scope.user)
    		.then(function(response){
-   			if(response.data.found){
-   				$window.location.href = "index.php"
-   			}else{
-   				alert("Datos incorrectos. Debe registrarse para poder ingresar al sistema.");
-   			}
+   			console.log(response);
+   			// if(response.data.found){
+   			// 	$window.location.href = "index.php"
+   			// }else{
+   			// 	alert("Datos incorrectos. Debe registrarse para poder ingresar al sistema.");
+   			// }
    		})
    		.catch(function(error){
 
