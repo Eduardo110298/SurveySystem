@@ -1,5 +1,5 @@
-app.controller("SurveyController", function($scope, $webService, $window) {
+app.controller("SurveyController", function($scope, $webService, $window, $compile) {
 	$scope.action = function($event){
-		console.log($event.currentTarget)
+		alert("hola")
 	}
 });

@@ -46,7 +46,7 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 	<script src="app/SurveySystem.js"></script>
 	<script src="app/controllers/SessionController.js"></script>
 	<script src="app/controllers/MenuController.js"></script>
-
+	<script src="app/controllers/SurveyController.js"></script>
 
 	<title>Encuesta ULA - UDO</title>
 </head>

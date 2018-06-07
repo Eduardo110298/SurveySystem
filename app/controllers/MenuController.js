@@ -1,4 +1,4 @@
-app.controller("MenuController", function($scope, $webService) {
+app.controller("MenuController", function($scope, $webService, $compile) {
 	$scope.obtener = function($event){
 		var anchor = $event.currentTarget
 		
@@ -8,6 +8,7 @@ app.controller("MenuController", function($scope, $webService) {
 		$webService.getHTML(anchor.id)
 		.then(function(response){
 			document.getElementById("content").innerHTML = response.data
+			$compile(document.getElementById("content"))($scope);
 		})
 		.catch(function(error){
 
