@@ -1,15 +1,9 @@
-app.controller("UserController", function($scope, $webService, $window) {
-	$scope.updateUser = {
-		firstName:'',
-		lastName:'',
-		question:'',
-		answer:'',
-		pass:''
-	}
-	var mivar = <?php echo json_encode($_SESSION["user"]); ?>
-	console.log(mivar)
-	$scope.loadUser = function(){
-		$webService.saveUser($scope.data)
+app.controller("UserController", function($scope, $webService, $window, $compile, $rootScope) {
+	
+	$scope.updatedUser = $rootScope.userData
+	
+	$scope.updateUser = function(){
+		$webService.updateUser($scope.updateUser)
 		.then(function(response){
 			if(response.data.found){
 				$scope.data.question = response.data.user[4]

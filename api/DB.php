@@ -28,7 +28,7 @@ class DB {
 
         $result = $this->db->query($sql);
         if ($result->num_rows == 1) {     
-            $data = $result->fetch_row();
+            $data = $result->fetch_assoc();
         }elseif ($result->num_rows > 1){
             $data = $result->fetch_all(MYSQLI_ASSOC);
         }

@@ -16,7 +16,7 @@
 			$sql = "SELECT * FROM usuario WHERE nombre_usuario = '$data->user' AND clave = PASSWORD('$data->pass')";
 			$result = $this->query($sql);
 			if($result){
-				$_SESSION['user'] = $data;
+				$_SESSION['user'] = $result;
 			}
 			$response['found'] = !empty($result);
 			echo json_encode($response);

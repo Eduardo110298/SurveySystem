@@ -11,7 +11,8 @@ app.controller("RecoveryController", function($scope, $webService, $window) {
 			if(response.data.found){
 				jQuery("#question-form").slideToggle();
 				jQuery("#user-form").slideToggle();
-				$scope.data.question = response.data.user[4]
+				console.log(response.data)
+				$scope.data.question = response.data.user.pregunta;
 			}else{
 				alert("Usuario no valido")
 			}

@@ -47,10 +47,17 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 	<script src="app/controllers/SessionController.js"></script>
 	<script src="app/controllers/MenuController.js"></script>
 	<script src="app/controllers/SurveyController.js"></script>
+	<script src="app/controllers/UserController.js"></script>
+	<script>
+		var userData = <?php echo json_encode($_SESSION["user"]); ?>;
+		app.run(function($rootScope){
+			$rootScope.userData = userData;
+		});
+	</script>
 
 	<title>Encuesta ULA - UDO</title>
 </head>
-<body>
+<body>	
 	<div style="width:100%;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
 		<div style="height:100px; background: #007bff;" class="container-fluid">
 			<div class="row" style="padding-top: 4px;">
