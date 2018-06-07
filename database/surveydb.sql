@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2018 a las 23:11:28
+-- Tiempo de generación: 07-06-2018 a las 22:41:18
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -33,6 +33,13 @@ CREATE TABLE `encuesta` (
   `nombre` varchar(100) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `encuesta`
+--
+
+INSERT INTO `encuesta` (`id`, `nombre`) VALUES
+(1, 'Encuesta Inicial');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,24 @@ CREATE TABLE `encuesta_pregunta` (
   `id_encuesta` int(11) NOT NULL,
   `id_pregunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `encuesta_pregunta`
+--
+
+INSERT INTO `encuesta_pregunta` (`id_encuesta`, `id_pregunta`) VALUES
+(1, 1),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13);
 
 -- --------------------------------------------------------
 
@@ -67,6 +92,49 @@ CREATE TABLE `opciones` (
   `opcion` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `opciones`
+--
+
+INSERT INTO `opciones` (`id_pregunta`, `id_opcion`, `opcion`) VALUES
+(1, 1, 'Femenino'),
+(1, 2, 'Masculino'),
+(3, 3, 'De 16 a 20 años'),
+(3, 4, 'De 21 a 24 años'),
+(3, 5, 'De 25 a 28 años'),
+(3, 6, 'De 29 años en adelante  '),
+(4, 7, 'Menos de 2 años'),
+(4, 8, 'De 2 a 5 años'),
+(4, 9, 'De 6 a 10 años'),
+(4, 10, '11 años o más '),
+(5, 11, 'No'),
+(5, 12, 'Regular'),
+(5, 13, 'Si'),
+(6, 14, 'No'),
+(6, 15, 'Regular'),
+(6, 16, 'Si'),
+(7, 17, 'No'),
+(7, 18, 'Regular'),
+(7, 19, 'Si'),
+(8, 20, 'No'),
+(8, 21, 'Regular'),
+(8, 22, 'Si'),
+(9, 23, 'No'),
+(9, 24, 'Regular'),
+(9, 25, 'Si'),
+(10, 26, 'No'),
+(10, 27, 'Regular'),
+(10, 28, 'Si'),
+(11, 29, 'No'),
+(11, 30, 'Regular'),
+(11, 31, 'Si'),
+(12, 32, 'No'),
+(12, 33, 'Regular'),
+(12, 34, 'Si'),
+(13, 35, 'No'),
+(13, 36, 'Regular'),
+(13, 37, 'Si');
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +145,24 @@ CREATE TABLE `pregunta` (
   `id` int(11) NOT NULL,
   `pregunta` varchar(500) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `pregunta`
+--
+
+INSERT INTO `pregunta` (`id`, `pregunta`) VALUES
+(1, 'Genero'),
+(3, 'Edad'),
+(4, '¿Cuál es su antigüedad en la institución académica?'),
+(5, 'Cuando ingrese a la institución me sentí bienvenido'),
+(6, 'Considero que existe un buen ambiente académico'),
+(7, 'Cuento con el apoyo de mis profesores a la hora de solicitar asesorías'),
+(8, 'Mis compañeros y yo nos apoyamos mutuamente en cuanto a trabajos académicos'),
+(9, '¿Puedes expresar tus opiniones o quejas de algún profesor en una oficina particular sin ser etiquetado?'),
+(10, '¿Consideras que la institución académica te recompensa por tus esfuerzos?'),
+(11, 'Al ingresar a la institución, ¿se le informa sobre las medidas que debería tomar en caso de ser víctima de abuso por parte de docentes, compañeros o cualquier personal administrativo?'),
+(12, 'Actualmente ¿consideras que las denuncias en tu institución académica tienen un efecto positivo para solventar dificultades entre profesores y/o estudiantes? '),
+(13, 'Actualmente ¿Confías en la oficina y/o el personal que recibe las denuncias de tu institución?');
 
 -- --------------------------------------------------------
 
@@ -153,6 +239,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`nombre`, `apellido`, `nombre_usuario`, `clave`, `pregunta`, `respuesta`, `id_rol`) VALUES
+('Ines', 'Natera', 'Ines', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
+('Ines', 'Natera', 'Ines1', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
+('Maria', 'Luna', 'Maria', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'mi hermano', 'andres', 1),
 ('Administrador', 'Principal', 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de Usuario', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 2);
 
 -- --------------------------------------------------------
@@ -252,7 +341,7 @@ ALTER TABLE `usuario_encuesta`
 -- AUTO_INCREMENT de la tabla `encuesta`
 --
 ALTER TABLE `encuesta`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `item_menu`
 --
@@ -262,12 +351,12 @@ ALTER TABLE `item_menu`
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
