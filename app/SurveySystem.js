@@ -23,5 +23,9 @@ app.factory("$webService", function($http, $window){
 		return $http.post("api/Usuario.php?method=setPassword", data);
 	}
 
+	this.getHTML = function(path){
+		return $http.get("api/Router.php?path=" + path) //?path=Encuestas
+	}
+
 	return this;
 });
