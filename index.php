@@ -17,6 +17,12 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
 	<!--link rel="stylesheet" type="text/css" href="styles.css"-->
 	<style>
+		.table tr td a{
+			cursor:pointer;
+		}
+		.table tr td.action{
+			color:white;
+		}
 		.menu{
 			padding:10px 0px 10px 0px;
 		}
