@@ -17,13 +17,29 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">
 	<!--link rel="stylesheet" type="text/css" href="styles.css"-->
 	<style>
+		.table tr td a{
+			cursor:pointer;
+		}
+		.table tr td.action{
+			color:white;
+		}
 		.menu{
-			padding:0px;
+			padding:10px 0px 10px 0px;
 		}
 		.menu li{
+			text-align: center;
+			padding:10px 20px 10px 20px;
+			color: white;
 			list-style: none;
 		}
+		.menu li.active{
+			border-radius: 20px;
+			background: #4b82bd;
+		}
 		.menu li a{
+			font-weight: bold;
+			color: white;
+			cursor:pointer;
 			text-decoration: none;
 		}
 	</style>
@@ -35,34 +51,45 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 	<title>Encuesta ULA - UDO</title>
 </head>
 <body>
-	<div class="container text-center">
-	</div>
-	<div style="width:100%">
+	<div style="width:100%;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
 		<div style="height:100px; background: #007bff;" class="container-fluid">
-			<div class="row">
-				<div class="col-md-6">
-					<img src="assets/ula.png" alt="" height="100">
+			<div class="row" style="padding-top: 4px;">
+				<div class="col-md-2">
+					<img src="assets/ula.png" alt="" height="90">
 					&nbsp;&nbsp;
-					<img src="assets/udo.png" alt="" width="100">
+					<img src="assets/udo.png" alt="" width="90">
 				</div>
-				<div ng-controller="SessionController" class="col-md-6 text-right">
-					<button ng-click="logout()" style="margin-top: 4.5%" class="btn btn-default">Cerrar Sesion</button>
+				<div class="col-md-10" style="color: white; font-weight: bold; padding-top: 10px">
+					Linea 1
+					<br/>
+					Linea 2
+					<br/>
+					Linea 3
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-2">
+	<div class="container-fluid" style="">
+		<div class="row" style="height:100vh">
+			<div class="col-md-2" style="background: #007bff;box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
 				<ul class="menu">
-				    <li class="active"><a href="#">Home</a></li>
-				    <li><a href="#">Menu 1</a></li>
-				    <li><a href="#">Menu 2</a></li>
-				    <li><a href="#">Menu 3</a></li>
+					<li class="active">
+						<a href="/SurveySystem/">Inicio</a>
+					</li>
+				    <li ng-controller="MenuController">
+				    	<a id="Encuestas" ng-click="obtener($event)">Encuestas</a>
+				    </li>
+				    <li ng-controller="MenuController">
+				    	<a id="Datos" ng-click="obtener($event)">Mis datos</a>
+				    </li>
+				    <li ng-controller="SessionController">
+				    	<a ng-click="logout()" href="#">
+				    Salir</a>
+				</li>
 				</ul>
 			</div>
-			<div class="col-md-10">
-				Content
+			<div class="col-md-10" id="content">
+				Home
 			</div>
 		</div>
 	</div>
