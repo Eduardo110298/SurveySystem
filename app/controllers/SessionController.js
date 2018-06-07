@@ -9,7 +9,6 @@ app.controller("SessionController", function($scope, $webService, $window) {
 		lastName:'',
 		user:'',
 		pass:'',
-		pass2:'',
 		question:'',
 		answer:''
 	}
