@@ -52,6 +52,7 @@ if(isset($_SESSION['user'])){
 					<input class="form-control" ng-model="user.pass" type="password">
 				</div>
 				<button class="btn btn-primary" ng-click="submitLoginData()">Iniciar sesión</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="toggleForms($event)">Registrarse</button>
+				<a href="recovery.php">Recuperar Contraseña</a>
 			</form>
 			<form id="register-form" style="display:none;">
 				<div class="row">

@@ -12,5 +12,16 @@ app.factory("$webService", function($http, $window){
 		return $http.post("api/Usuario.php?method=register", newUser);
 	}
 
+	this.validateUser = function(data){
+		return $http.post("api/Usuario.php?method=validateUser", data);
+	}
+
+	this.validateAnswer = function(data){
+		return $http.post("api/Usuario.php?method=validateAnswer", data);
+	}
+	this.setPassword = function(data){
+		return $http.post("api/Usuario.php?method=setPassword", data);
+	}
+
 	return this;
 });
