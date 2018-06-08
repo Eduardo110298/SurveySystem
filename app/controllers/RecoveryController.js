@@ -22,6 +22,11 @@ app.controller("RecoveryController", function($scope, $webService, $window) {
 		});
 	}
 
+	$scope.beginSession = function(){
+		$window.location.href='/SurveySystem/'
+
+	}
+
 	$scope.submitAnswer = function(){
 		$webService.validateAnswer($scope.data)
 		.then(function(response){

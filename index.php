@@ -84,10 +84,16 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 						<a href="/SurveySystem/">Inicio</a>
 					</li>
 				    <li ng-controller="MenuController">
-				    	<a id="Encuestas" ng-click="obtener($event)">Encuestas</a>
+				    	<a id="Encuestas" ng-click="obtener($event)">Encuestas por Hacer</a>
+				    </li>
+				    <li ng-controller="MenuController">
+				    	<a id="EncuestasRealizadas" ng-click="obtener($event)">Encuestas Hechas</a>
 				    </li>
 				    <li ng-controller="MenuController">
 				    	<a id="Datos" ng-click="obtener($event)">Mis datos</a>
+				    </li>
+				    <li ng-controller="MenuController">
+				    	<a id="EncuestasRealizadas" ng-click="obtener($event)">Encuestas Hechas</a>
 				    </li>
 				    <li ng-controller="SessionController">
 				    	<a ng-click="logout()" href="#">
@@ -95,8 +101,10 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 				</li>
 				</ul>
 			</div>
-			<div class="col-md-10" id="content">
-				Texto introductorio al sistema de encuestas 
+			<div class="col-md-10" id="content" >
+				Buenas días/tardes soy estudiante de la Escuela de Criminología de la Universidad de los Andes y estoy desarrollando una investigación sobre los factores sociales que afecten el desempeño individual y/o comunitario de los estudiantes en su institución académica; y al mismo tiempo ofrecer una asesoría o intervención criminológica que les permita identificar dichos elementos y las posibles soluciones que podrían orientarlos para la mejora de los factores expuestos.
+				Agradezco toda su colaboración para que me ayude a completar el instrumento que es totalmente ANÓNIMO, respondiendo las preguntas que aparecen a continuación. Sin más que agregar gracias de antemano:   
+
 			</div>
 		</div>
 	</div>
