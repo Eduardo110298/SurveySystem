@@ -29,6 +29,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	}
 
 	$scope.action = function(survey){
+		console.log(survey)
 		$scope.currentSurvey = survey
 		$webService.getHTML("ParticiparEncuesta")
 		.then(function(response){
