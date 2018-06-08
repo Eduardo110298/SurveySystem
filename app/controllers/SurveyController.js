@@ -1,6 +1,12 @@
 app.controller("SurveyController", function($scope, $webService, $window, $compile) {
 	$scope.traerEncuestas = function(){
-		alert("hola")
+		$webService.getSurveys()
+		.then(function(response){
+			console.log(response.data)
+		})
+		.catch(function(error){
+
+		});
 	}
 	$scope.traerEncuestas();
 	// $scope.action = function($event){
