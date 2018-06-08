@@ -96,7 +96,7 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 				</ul>
 			</div>
 			<div class="col-md-10" id="content">
-				Home
+				Texto introductorio al sistema de encuestas 
 			</div>
 		</div>
 	</div>

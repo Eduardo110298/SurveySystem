@@ -9,7 +9,7 @@ app.controller("MenuController", function($scope, $webService, $compile, $rootSc
 		.then(function(response){
 			document.getElementById("content").innerHTML = response.data
 			$compile(document.getElementById("content"))($scope);
-			$compile(document.getElementById("content"))($rootScope);
+			//$compile(document.getElementById("content"))($rootScope);
 		})
 		.catch(function(error){
 

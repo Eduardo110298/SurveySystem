@@ -13,7 +13,7 @@
 
 		function login(){
 			$data = $this->data;
-			$sql = "SELECT * FROM usuario WHERE nombre_usuario = '$data->user' AND clave = PASSWORD('$data->pass')";
+			$sql = "SELECT * FROM usuario JOIN rol ON rol.id = usuario.id_rol WHERE usuario.nombre_usuario = '$data->user' AND usuario.clave = PASSWORD('$data->pass')";
 			$result = $this->query($sql);
 			if($result){
 				$_SESSION['user'] = $result;
