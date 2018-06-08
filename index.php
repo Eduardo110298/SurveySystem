@@ -67,11 +67,11 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 					<img src="assets/udo.png" alt="" width="90">
 				</div>
 				<div class="col-md-10" style="color: white; font-weight: bold; padding-top: 10px">
-					Linea 1
+					Universidad de Los Andes - Universidad de Oriente
 					<br/>
-					Linea 2
+					Criminología - Lic. Informática
 					<br/>
-					Linea 3
+					Merida - Nueva Esparta
 				</div>
 			</div>
 		</div>
