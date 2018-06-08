@@ -11,9 +11,10 @@
 			$this->data = json_decode(file_get_contents('php://input'));
 		}
 
-		function getSurveys(){
+		function getQuestions(){
 			$data = $this->data;
-			$sql = "SELECT * FROM encuesta";
+			echo json_encode($data);
+			$sql = "SELECT * FROM pregunta WHERE id_encuesta = ''";
 			$result = $this->query($sql);
 			echo json_encode($result);
 			mysqli_close($this->db);
