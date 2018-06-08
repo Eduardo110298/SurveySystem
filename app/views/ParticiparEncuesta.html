@@ -2,22 +2,5 @@
 	<div class="page-header">
 	  <h3>{{ currentSurvey.nombre }}</h3>
 	</div>
-	<div class="table-responsive">
-		<table class="table table-hover">
-	    <thead>
-	      <tr>
-	        <th>Número</th>
-	        <th>Título</th>
-	        <th>Acción</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr ng-repeat="survey in surveys">
-	        <td>{{ survey.id }}</td>
-	        <td>{{ survey.nombre }}</td>
-	        <td class="action"><a class="btn btn-primary" ng-click="action(survey)">{{ userData.rol == "administrador"? "Configurar" : "Participar" }}</a></td>
-	      </tr>
-	    </tbody>
-	  </table>
-	</div>
+	<button class="btn btn-default" ng-click="traerPreguntas()">boton</button>
 </div>

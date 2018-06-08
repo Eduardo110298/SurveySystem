@@ -1,5 +1,4 @@
 app.controller("SurveyController", function($scope, $webService, $window, $compile) {
-	$scope.currentSurvey = ""
 	$scope.traerEncuestas = function(){
 		$webService.getSurveys()
 		.then(function(response){
@@ -9,7 +8,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 			}else{
 				$scope.surveys = response.data
 			}
-			console.log($scope.surveys)
+			// console.log($scope.surveys)
 		})
 		.catch(function(error){
 
@@ -17,19 +16,16 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	}
 	$scope.traerEncuestas();
 
-
 	$scope.traerPreguntas = function(){
-		$webService.getQuestions($scope.survey.id)
+		$webService.getQuestions($scope.currentSurvey.id)
 		.then(function(response){
-			console.log(response.data)
+			console.log(response)
 		})
 		.catch(function(error){
-
-		})
+		});
 	}
 
 	$scope.action = function(survey){
-		console.log(survey)
 		$scope.currentSurvey = survey
 		$webService.getHTML("ParticiparEncuesta")
 		.then(function(response){

@@ -9,7 +9,7 @@ app.controller("UserController", function($scope, $webService, $window, $compile
 				alert("Datos Guardados")
 				$window.location.href='/SurveySystem/'
 			}else{
-				alert("Errir Fatal")
+				alert("Error Fatal")
 				console.log(response)
 			}
 		})
