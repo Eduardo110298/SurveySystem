@@ -7,6 +7,7 @@ app.controller("UserController", function($scope, $webService, $window, $compile
 		.then(function(response){
 			if(response.data.success){
 				alert("Datos Guardados")
+				$window.location.href='/SurveySystem/'
 			}else{
 				alert("Errir Fatal")
 				console.log(response)

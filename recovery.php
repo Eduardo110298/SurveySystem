@@ -47,7 +47,7 @@ if(isset($_SESSION['user'])){
 					<label><b>Usuario</b></label>
 					<input class="form-control" ng-model="data.user" type="text">
 				</div>
-				<button class="btn btn-primary" ng-click="submitUser()">Siguiente</button>
+				<button class="btn btn-primary" ng-click="submitUser()">Siguiente</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="beginSession()">Iniciar sesión</button>
 			</form>
 			<form id="question-form" style="display:none;">
 				<div class="form-group">
@@ -57,14 +57,14 @@ if(isset($_SESSION['user'])){
 					<label><b>Respuesta</b></label>
 					<input class="form-control" ng-model="data.answer" type="password">
 				</div>
-			<button class="btn btn-primary" ng-click="submitAnswer()">Registrarse</button>
+			<button class="btn btn-primary" ng-click="submitAnswer()">Siguiente</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="beginSession()">Iniciar sesión</button>
 			</form>
 			<form id="password-form" style="display:none;">
 				<div class="form-group">
 					<label><b>Nueva Contraseña: </b></label>
 					<input class="form-control" ng-model="data.pass" type="password">
 				</div>
-				<button class="btn btn-primary" ng-click="submitPassword()">Cambiar Contraseña</button>
+				<button class="btn btn-primary" ng-click="submitPassword()">Cambiar Contraseña</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="beginSession()">Iniciar sesión</button>
 			</form>
 		</div>
 	</div>
