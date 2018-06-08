@@ -55,6 +55,25 @@
 			$sql = "UPDATE usuario SET clave=PASSWORD('$data->pass') WHERE nombre_usuario = '$data->user'";
 			$result = $this->exec($sql);
 			echo json_encode($result);
+			mysqli_close($this->db);
+		}
+		function updateUser(){
+			$data = $this->data;
+			if (strlen($data->clave)>=40 && strlen($data->respuesta)>=40) {
+				$sql = "UPDATE usuario SET nombre='$data->nombre',apellido='$data->apellido',pregunta='$data->pregunta' WHERE nombre_usuario = '$data->nombre_usuario'";
+			}elseif (strlen($data->clave)>=40 && strlen($data->respuesta)<40) {
+				$sql = "UPDATE usuario SET nombre='$data->nombre',apellido='$data->apellido',pregunta='$data->pregunta',respuesta=PASSWORD('$data->respuesta') WHERE nombre_usuario = '$data->nombre_usuario'";
+
+			}elseif (strlen($data->clave)<40 && strlen($data->respuesta)>=40) {
+				$sql = "UPDATE usuario SET nombre='$data->nombre',apellido='$data->apellido',clave=PASSWORD('$data->clave'),pregunta='$data->pregunta' WHERE nombre_usuario = '$data->nombre_usuario'";
+			}else{
+
+				$sql = "UPDATE usuario SET nombre='$data->nombre',apellido='$data->apellido',clave=PASSWORD('$data->clave'),pregunta='$data->pregunta',respuesta=PASSWORD('$data->respuesta') WHERE nombre_usuario = '$data->nombre_usuario'";
+			}
+			
+			$result = $this->exec($sql);
+			echo json_encode($result);
+			mysqli_close($this->db);
 		}
 
 	}

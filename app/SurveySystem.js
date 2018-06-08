@@ -27,5 +27,8 @@ app.factory("$webService", function($http, $window){
 		return $http.get("api/Router.php?path=" + path) //?path=Encuestas
 	}
 
+	this.updateUser = function(data){
+		return $http.post("api/Usuario.php?method=updateUser", data);
+	}
 	return this;
 });
