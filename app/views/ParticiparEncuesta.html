@@ -1,19 +1,21 @@
-<?php echo "hola"; ?>
 <div ng-controller="SurveyController" style="padding-top:10px">
 	<div class="page-header">
 	  <h3>{{ currentSurvey.nombre }}</h3>
 	</div>
-	<ol style="overflow: scroll; height:90vh">
-		<li ng-repeat="question in questions">
-			{{ question.pregunta }}
-			<br/>
-			<ul>
-				<li style="list-style: none;" ng-repeat="option in question.options">
-					<span ng-if="userData.rol=='administrador'"><input type="checkbox"></span>
-					<span ng-if="userData.rol=='estudiante'"><input type="radio" name="option_{{ question.id }}"></span>
-					{{ option.opcion }}
-				</li>
-			</ul>
-		</li>
-	</ol>
+	<form id="survey" name="surveyForm" ng-submit="submit(surveyForm.$valid)" style="overflow: scroll; height:90vh">
+		<ol>
+			<li ng-repeat="question in questions">
+				{{ question.pregunta }}
+				<br/>
+				<ul>
+					<li style="list-style: none;" ng-repeat="option in question.options">
+						<span ng-if="userData.rol=='administrador'"><input type="checkbox" ng-click="putOption(question,option)" value="{{ option.id_opcion }}"></span>
+						<span ng-if="userData.rol=='estudiante'"><input type="radio" name="opcion_de_pregunta_{{ question.id }}" ng-click="putOption(question,option)" value="{{ option.id_opcion }}" required></span>
+						{{ option.opcion }}
+					</li>
+				</ul>
+			</li>
+		</ol>
+		<button class="btn btn-success" type="submit">Enviar</button>
+	</form>
 </div>

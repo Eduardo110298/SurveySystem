@@ -8,7 +8,6 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 			}else{
 				$scope.surveys = response.data
 			}
-			// console.log($scope.surveys)
 		})
 		.catch(function(error){
 
@@ -23,6 +22,10 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		})
 		.catch(function(error){
 		});
+	}
+
+	$scope.submit = function(){
+		console.log(jQuery("form#survey").serialize().split("&").map((x) => x.split("=")).map((x) => x[1]).join())
 	}
 
 	$scope.action = function(survey){
