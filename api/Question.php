@@ -33,6 +33,24 @@
 			echo $response;
 			mysqli_close($this->db);
 		}
+
+		function saveCustomAnswer(){
+			$data = $this->data;
+			if($data->repe){
+				$sql = "UPDATE respuesta SET respuesta = '$data->resp' WHERE combinacion = '$data->comb'";
+				$result = $this->exec($sql);
+				echo json_encode($result);
+			}else{
+				$sql = "INSERT INTO respuesta(respuesta, id_encuesta, combinacion) VALUES('$data->resp', '$data->survey_id', '$data->comb')";
+				$result = $this->exec($sql);
+				if(!is_array($result) && explode(" ", $result)[0]=="Duplicate"){
+					echo json_encode(array("repeated" => true));
+				}else{
+					echo json_encode($result);
+				}
+			}
+			mysqli_close($this->db);
+		}
 	}
 
 	$question = new Question();

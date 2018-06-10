@@ -6,7 +6,7 @@ app.controller("UserController", function($scope, $webService, $window, $compile
 		$webService.updateUser($scope.updatedUser)
 		.then(function(response){
 			if(response.data.success){
-				alert("Datos Guardados")
+				alert("Datos Guardados!")
 				$window.location.href='/SurveySystem/'
 			}else{
 				alert("Error Fatal")

@@ -39,5 +39,13 @@ app.factory("$webService", function($http, $window){
 		return $http.get("api/Question.php?method=getQuestions&id=" + id_survey)
 	}
 
+	this.sendCustomAnswer = function(payload){
+		return $http.post("api/Question.php?method=saveCustomAnswer", payload)
+	}
+
+	this.sendAnswers = function(payload){
+		return $http.post("api/Question.php?method=saveAnswers", payload)
+	}
+
 	return this;
 });

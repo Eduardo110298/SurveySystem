@@ -3,38 +3,38 @@
 	  <h3>Actualizar mis Datos</h3>
 	</div>
 	<form id="register-form">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group">
-							<label><b>Nombre</b></label>
-							<input class="form-control" ng-model="updatedUser.nombre" type="text" >
-						</div>
-						<div class="form-group">
-							<label><b>Apellido</b></label>
-							<input class="form-control" ng-model="updatedUser.apellido" type="text">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label><b>Usuario</b></label>
-							<input class="form-control" ng-model="updatedUser.nombre_usuario" type="text"disabled>
-						</div>
-						<div class="form-group">
-							<label><b>Contraseña</b></label>
-							<input class="form-control" ng-model="updatedUser.clave" type="password">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label><b>Pregunta de seguridad</b></label>
-							<input class="form-control" ng-model="updatedUser.pregunta" type="text">
-						</div>
-						<div class="form-group">
-							<label><b>Respuesta</b></label>
-							<input class="form-control" ng-model="updatedUser.respuesta" type="password">
-						</div>
-					</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label><b>Nombre</b></label>
+					<input class="form-control" ng-model="updatedUser.nombre" type="text" >
 				</div>
-				<button class="btn btn-primary" ng-click="updateUser()">Actualizar Datos</button>
-			</form>
+				<div class="form-group">
+					<label><b>Apellido</b></label>
+					<input class="form-control" ng-model="updatedUser.apellido" type="text">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label><b>Usuario</b></label>
+					<input class="form-control" ng-model="updatedUser.nombre_usuario" type="text"disabled>
+				</div>
+				<div class="form-group">
+					<label><b>Contraseña</b></label>
+					<input class="form-control" ng-model="updatedUser.clave" type="password">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label><b>Pregunta de seguridad</b></label>
+					<input class="form-control" ng-model="updatedUser.pregunta" type="text">
+				</div>
+				<div class="form-group">
+					<label><b>Respuesta</b></label>
+					<input class="form-control" ng-model="updatedUser.respuesta" type="password">
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-primary" ng-click="updateUser()">Actualizar Datos</button>
+	</form>
 </div>

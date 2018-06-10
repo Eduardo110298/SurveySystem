@@ -2,20 +2,25 @@
 	<div class="page-header">
 	  <h3>{{ currentSurvey.nombre }}</h3>
 	</div>
-	<form id="survey" name="surveyForm" ng-submit="submit(surveyForm.$valid)" style="overflow: scroll; height:90vh">
+	<form id="survey" name="surveyForm" ng-submit="submit()" style="overflow: scroll; height:90vh">
 		<ol>
 			<li ng-repeat="question in questions">
 				{{ question.pregunta }}
 				<br/>
 				<ul>
 					<li style="list-style: none;" ng-repeat="option in question.options">
-						<span ng-if="userData.rol=='administrador'"><input type="checkbox" ng-click="putOption(question,option)" value="{{ option.id_opcion }}"></span>
-						<span ng-if="userData.rol=='estudiante'"><input type="radio" name="opcion_de_pregunta_{{ question.id }}" ng-click="putOption(question,option)" value="{{ option.id_opcion }}" required></span>
+						<span ng-if="userData.rol=='administrador'"><input type="checkbox" name="opcion_de_pregunta_{{ question.id }}" value="{{ option.id_opcion }}"></span>
+						<span ng-if="userData.rol=='estudiante'"><input type="radio" name="opcion_de_pregunta_{{ question.id }}" value="{{ option.id_opcion }}" required></span>
 						{{ option.opcion }}
 					</li>
 				</ul>
 			</li>
 		</ol>
-		<button class="btn btn-success" type="submit">Enviar</button>
+		<h5>Respuesta:</h5>
+		<div ng-if="userData.rol=='administrador'">
+			<textarea ng-model="data.customAnswer" class="form-control" rows="20" style="width:70%;margin-left: 3px;"></textarea>
+			<br/>
+		</div>
+		<button style="margin-left: 3px" class="btn btn-success" type="submit">{{ userData.rol == "administrador"? "Configurar" : "Enviar" }}</button>
 	</form>
 </div>

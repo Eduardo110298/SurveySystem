@@ -1,4 +1,4 @@
-app.controller("SurveyController", function($scope, $webService, $window, $compile) {
+app.controller("SurveyController", function($scope, $webService, $window, $compile, $rootScope) {
 	$scope.traerEncuestas = function(){
 		$webService.getSurveys()
 		.then(function(response){
@@ -24,8 +24,49 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		});
 	}
 
+	$scope.data = {
+		customAnswer: ""
+	}
+
 	$scope.submit = function(){
-		console.log(jQuery("form#survey").serialize().split("&").map((x) => x.split("=")).map((x) => x[1]).join())
+		if($rootScope.userData.rol == "administrador"){
+			var payload = {
+				comb: jQuery("form#survey").serialize().split("&").map((x) => x.split("=")).map((x) => x[1]).join(),
+				resp: $scope.data.customAnswer,
+				repe: false,
+				survey_id: $scope.currentSurvey.id
+			}
+			$webService.sendCustomAnswer(payload)
+			.then(function(response){
+				if(response.data.repeated){
+					if(confirm("La combinación introducida ya fue registrada, ¿desea sobreescribirla?")){
+						if(confirm("¿Está seguro?")){
+							payload.repe = true
+							$webService.sendCustomAnswer(payload)
+							.then(function(response){
+								if (response.data.success) {
+									alert("Datos Guardados!")	
+								}
+							})
+							.catch(function(error){
+							})
+						}
+					}
+				}else{
+					if (response.data.success) {
+						alert("Datos Guardados!")	
+					}
+				}
+			})
+			.catch(function(error){
+
+			})
+		}else{
+			alert("I'm an student!")
+			/*
+			*  Code of student
+			*/
+		}
 	}
 
 	$scope.action = function(survey){

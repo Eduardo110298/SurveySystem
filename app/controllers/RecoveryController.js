@@ -36,7 +36,7 @@ app.controller("RecoveryController", function($scope, $webService, $window) {
 				jQuery("#question-form").slideToggle();
 			}else{
 				console.log(response)
-				alert("Respuesta Incorrecta")
+				alert("Respuesta Incorrecta!")
 			}
 		})
 		.catch(function(error){
@@ -47,7 +47,7 @@ app.controller("RecoveryController", function($scope, $webService, $window) {
 		$webService.setPassword($scope.data)
 		.then(function(response){
 			if(response.data.success){
-				alert("Cambio Exitoso")
+				alert("Cambio Exitoso!")
 				$window.location.href = "login.php"
 			}
 		})
