@@ -15,6 +15,7 @@
 			$data = $this->data;
 			$sql = "SELECT * FROM encuesta";
 			$result = $this->query($sql);
+			$this->utf8_string_array_encode($result);
 			echo json_encode($result);
 			mysqli_close($this->db);
 		}

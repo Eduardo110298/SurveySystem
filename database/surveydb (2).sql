@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2018 a las 22:41:18
+-- Tiempo de generación: 08-06-2018 a las 15:07:20
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -72,17 +72,6 @@ INSERT INTO `encuesta_pregunta` (`id_encuesta`, `id_pregunta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `item_menu`
---
-
-CREATE TABLE `item_menu` (
-  `id` int(11) NOT NULL,
-  `item` varchar(50) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `opciones`
 --
 
@@ -143,7 +132,7 @@ INSERT INTO `opciones` (`id_pregunta`, `id_opcion`, `opcion`) VALUES
 
 CREATE TABLE `pregunta` (
   `id` int(11) NOT NULL,
-  `pregunta` varchar(500) COLLATE utf8_bin NOT NULL
+  `pregunta` varchar(500) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -151,9 +140,9 @@ CREATE TABLE `pregunta` (
 --
 
 INSERT INTO `pregunta` (`id`, `pregunta`) VALUES
-(1, 'Genero'),
+(1, 'Género'),
 (3, 'Edad'),
-(4, '¿Cuál es su antigüedad en la institución académica?'),
+(4, 'Cuál es su antiguedad en la institucion academica'),
 (5, 'Cuando ingrese a la institución me sentí bienvenido'),
 (6, 'Considero que existe un buen ambiente académico'),
 (7, 'Cuento con el apoyo de mis profesores a la hora de solicitar asesorías'),
@@ -210,17 +199,6 @@ INSERT INTO `rol` (`id`, `rol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rol_item`
---
-
-CREATE TABLE `rol_item` (
-  `id_rol` int(11) NOT NULL,
-  `id_item` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -239,7 +217,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`nombre`, `apellido`, `nombre_usuario`, `clave`, `pregunta`, `respuesta`, `id_rol`) VALUES
-('Ines', 'Natera', 'Ines', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
+('Ines alejan', 'Natera', 'Ines', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', '*E33729014FEFB64F5F8AD54615B0B514C1C35B44', 1),
 ('Ines', 'Natera', 'Ines1', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
 ('Maria', 'Luna', 'Maria', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'mi hermano', 'andres', 1),
 ('Administrador', 'Principal', 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de Usuario', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 2);
@@ -271,12 +249,6 @@ ALTER TABLE `encuesta`
 ALTER TABLE `encuesta_pregunta`
   ADD PRIMARY KEY (`id_encuesta`,`id_pregunta`),
   ADD KEY `id_pregunta_poseeFK` (`id_pregunta`);
-
---
--- Indices de la tabla `item_menu`
---
-ALTER TABLE `item_menu`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `opciones`
@@ -313,13 +285,6 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `rol_item`
---
-ALTER TABLE `rol_item`
-  ADD PRIMARY KEY (`id_rol`,`id_item`),
-  ADD KEY `id_item_rolFK` (`id_item`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -342,11 +307,6 @@ ALTER TABLE `usuario_encuesta`
 --
 ALTER TABLE `encuesta`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT de la tabla `item_menu`
---
-ALTER TABLE `item_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
@@ -397,13 +357,6 @@ ALTER TABLE `respuesta_alumno`
   ADD CONSTRAINT `id_opcion_resp_FK` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id_opcion`) ON UPDATE CASCADE,
   ADD CONSTRAINT `id_preg_resp` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_respFK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`nombre_usuario`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `rol_item`
---
-ALTER TABLE `rol_item`
-  ADD CONSTRAINT `id_item_rolFK` FOREIGN KEY (`id_item`) REFERENCES `item_menu` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_rol_itemFK` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
