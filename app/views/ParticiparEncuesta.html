@@ -2,5 +2,9 @@
 	<div class="page-header">
 	  <h3>{{ currentSurvey.nombre }}</h3>
 	</div>
-	<button class="btn btn-default" ng-click="traerPreguntas()">boton</button>
+	<ol>
+		<li ng-repeat="question in questions">
+			{{ question.pregunta }}
+		</li>
+	</ol>
 </div>

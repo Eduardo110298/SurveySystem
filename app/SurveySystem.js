@@ -35,8 +35,8 @@ app.factory("$webService", function($http, $window){
 		return $http.get("api/Survey.php?method=getSurveys") //?path=Encuestas
 	}
 
-	this.getQuestions = function(id_question){
-		return $http.get("api/Question.php?method=getQuestions&id="+id_question)
+	this.getQuestions = function(id_survey){
+		return $http.get("api/Question.php?method=getQuestions&id=" + id_survey)
 	}
 
 	return this;

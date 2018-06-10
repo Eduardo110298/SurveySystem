@@ -19,7 +19,8 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	$scope.traerPreguntas = function(){
 		$webService.getQuestions($scope.currentSurvey.id)
 		.then(function(response){
-			console.log(response)
+			console.log(response.data)
+			$scope.questions = response.data
 		})
 		.catch(function(error){
 		});
@@ -29,9 +30,9 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		$scope.currentSurvey = survey
 		$webService.getHTML("ParticiparEncuesta")
 		.then(function(response){
+			$scope.traerPreguntas()
 			document.getElementById("content").innerHTML = response.data
 			$compile(document.getElementById("content"))($scope);
-			$scope.traerPreguntas()
 		})
 		.catch(function(error){
 
