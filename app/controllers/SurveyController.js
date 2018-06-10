@@ -19,7 +19,6 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	$scope.traerPreguntas = function(){
 		$webService.getQuestions($scope.currentSurvey.id)
 		.then(function(response){
-			console.log(response.data)
 			$scope.questions = response.data
 		})
 		.catch(function(error){
