@@ -69,6 +69,7 @@
 				if (count(array_unique(array_merge(explode(",",$comb_bag["combinacion"]),$user_comb_array))) == count(explode(",",$comb_bag["combinacion"]))){
 					$comb_bag_id = $comb_bag["id"];
 					$sql = "INSERT INTO respuesta_alumno1(id_respuesta,id_usuario,opciones) VALUES('$comb_bag_id','$data->user_id','$data->comb')";
+					$result = $this->exec($sql);
 					return $comb_bag["respuesta"];
 				}
 			}

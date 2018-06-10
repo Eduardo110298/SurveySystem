@@ -1,6 +1,6 @@
 app.controller("SurveyController", function($scope, $webService, $window, $compile, $rootScope) {
 	$scope.traerEncuestas = function(){
-		$webService.getSurveys()
+		$webService.getSurveys($rootScope.userData.nombre_usuario)
 		.then(function(response){
 			$scope.surveys = []
 			if(!Array.isArray(response.data)){
@@ -34,7 +34,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 			resp: $scope.data.customAnswer,
 			repe: false,
 			survey_id: $scope.currentSurvey.id,
-			user_id: $rootScope.userData.id
+			user_id: $rootScope.userData.nombre_usuario
 		}
 		if($rootScope.userData.rol == "administrador"){
 			$webService.sendCustomAnswer(payload)
@@ -65,7 +65,10 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		}else{
 			$webService.sendAnswers(payload)
 			.then(function(response){
-				console.log(response.data)
+				alert("Datos Guardados!")
+				$scope.data.customAnswer = response.data
+				jQuery("#survey").slideToggle();
+				jQuery("#response").slideToggle();
 			})
 			.catch(function(error){
 			});

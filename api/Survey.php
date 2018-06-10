@@ -13,10 +13,16 @@
 
 		function getSurveys(){
 			$data = $this->data;
-			$sql = "SELECT * FROM encuesta";
+			$nombre_usuario = $_GET["nombre_usuario"];
+			$sql = "SELECT * FROM encuesta WHERE id NOT IN(SELECT respuesta.id_encuesta FROM respuesta JOIN respuesta_alumno1 ON respuesta_alumno1.id_respuesta = respuesta.id WHERE respuesta_alumno1.id_usuario='$nombre_usuario')";
 			$result = $this->query($sql);
-			$this->utf8_string_array_encode($result);
-			echo json_encode($result);
+			if ($result){ 
+				$this->utf8_string_array_encode($result);
+				echo json_encode($result);
+			}else{
+				echo json_encode(array());
+			}
+			
 			mysqli_close($this->db);
 		}
 	}

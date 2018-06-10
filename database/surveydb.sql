@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2018 a las 23:04:05
+-- Tiempo de generación: 11-06-2018 a las 01:33:08
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -171,12 +171,8 @@ CREATE TABLE `respuesta` (
 --
 
 INSERT INTO `respuesta` (`id`, `respuesta`, `id_encuesta`, `combinacion`) VALUES
-(27, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,26,29,32,36'),
-(28, 'Respuesta custom 2', 1, '1,3,7,11,14,17,20,23,26,29,32,35,36'),
-(29, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,26,29,32,35,36,37'),
-(30, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,29,32,37'),
-(31, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23'),
-(32, 'Respuesta custom 1', 1, '1,3,7,11,14,17,20,23,26,29,32,35');
+(33, 'Mergue', 1, '1,3,7,11,14,17,20,23,26,29,32,35'),
+(34, 'Modelo de respuesta 2', 1, '1,4,7,11,14,17,20,23,26,29,32,35');
 
 -- --------------------------------------------------------
 
@@ -360,13 +356,13 @@ ALTER TABLE `pregunta`
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta_alumno1`
 --
 ALTER TABLE `respuesta_alumno1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

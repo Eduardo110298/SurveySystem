@@ -31,8 +31,8 @@ app.factory("$webService", function($http, $window){
 		return $http.post("api/Usuario.php?method=updateUser", data);
 	}
 
-	this.getSurveys = function(){
-		return $http.get("api/Survey.php?method=getSurveys") //?path=Encuestas
+	this.getSurveys = function(nombre_usuario){
+		return $http.get("api/Survey.php?method=getSurveys&nombre_usuario=" + nombre_usuario) //?path=Encuestas
 	}
 
 	this.getQuestions = function(id_survey){
