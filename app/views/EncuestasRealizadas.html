@@ -1,0 +1,23 @@
+<div ng-controller="SurveyController" style="padding-top:10px">
+	<div class="page-header">
+	  <h3 >{{ userData.rol == "administrador"? "Resultados de Encuestas" : "Mis Encuestas Respondidas" }} </h3>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Número</th>
+	        <th>Título</th>
+	        <th>Acción</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="survey in surveys">
+	        <td>{{ survey.id }}</td>
+	        <td>{{ survey.nombre }}</td>
+	        <td class="action"><a class="btn btn-primary" ng-click="action(survey)">{{ userData.rol == "administrador"? "Configurar" : "Participar" }}</a></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</div>
+</div>
