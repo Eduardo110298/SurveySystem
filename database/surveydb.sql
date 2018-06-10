@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2018 a las 15:07:20
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 5.6.31
+-- Tiempo de generación: 10-06-2018 a las 23:04:05
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -142,7 +142,7 @@ CREATE TABLE `pregunta` (
 INSERT INTO `pregunta` (`id`, `pregunta`) VALUES
 (1, 'Género'),
 (3, 'Edad'),
-(4, 'Cuál es su antiguedad en la institucion academica'),
+(4, '¿Cuál es su antigüedad en la institución académica?'),
 (5, 'Cuando ingrese a la institución me sentí bienvenido'),
 (6, 'Considero que existe un buen ambiente académico'),
 (7, 'Cuento con el apoyo de mis profesores a la hora de solicitar asesorías'),
@@ -162,8 +162,21 @@ INSERT INTO `pregunta` (`id`, `pregunta`) VALUES
 CREATE TABLE `respuesta` (
   `id` int(11) NOT NULL,
   `respuesta` text COLLATE utf8_bin NOT NULL,
-  `id_encuesta` int(11) NOT NULL
+  `id_encuesta` int(11) NOT NULL,
+  `combinacion` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `respuesta`
+--
+
+INSERT INTO `respuesta` (`id`, `respuesta`, `id_encuesta`, `combinacion`) VALUES
+(27, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,26,29,32,36'),
+(28, 'Respuesta custom 2', 1, '1,3,7,11,14,17,20,23,26,29,32,35,36'),
+(29, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,26,29,32,35,36,37'),
+(30, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23,29,32,37'),
+(31, 'Usted tiene problemas serios de demencia!!', 1, '1,3,7,11,14,17,20,23'),
+(32, 'Respuesta custom 1', 1, '1,3,7,11,14,17,20,23,26,29,32,35');
 
 -- --------------------------------------------------------
 
@@ -176,6 +189,19 @@ CREATE TABLE `respuesta_alumno` (
   `id_opcion` int(11) NOT NULL,
   `id_pregunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuesta_alumno1`
+--
+
+CREATE TABLE `respuesta_alumno1` (
+  `id` int(11) NOT NULL,
+  `id_respuesta` int(11) NOT NULL,
+  `id_usuario` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `opciones` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -217,6 +243,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`nombre`, `apellido`, `nombre_usuario`, `clave`, `pregunta`, `respuesta`, `id_rol`) VALUES
+('Eduardo', 'Rodriguez', 'Eduardo', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de mi mascota', '*14F3C4868BD19935D832B10A1839D24FFCB13185', 1),
 ('Ines alejan', 'Natera', 'Ines', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', '*E33729014FEFB64F5F8AD54615B0B514C1C35B44', 1),
 ('Ines', 'Natera', 'Ines1', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
 ('Maria', 'Luna', 'Maria', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'mi hermano', 'andres', 1),
@@ -268,6 +295,7 @@ ALTER TABLE `pregunta`
 --
 ALTER TABLE `respuesta`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `combinacion_uk` (`combinacion`) USING BTREE,
   ADD KEY `id_encuestaFK` (`id_encuesta`);
 
 --
@@ -277,6 +305,14 @@ ALTER TABLE `respuesta_alumno`
   ADD PRIMARY KEY (`id_usuario`,`id_opcion`),
   ADD KEY `id_opcion_resp_FK` (`id_opcion`),
   ADD KEY `id_preg_resp` (`id_pregunta`);
+
+--
+-- Indices de la tabla `respuesta_alumno1`
+--
+ALTER TABLE `respuesta_alumno1`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuarioFK1` (`id_usuario`),
+  ADD KEY `id_respuestaFK` (`id_respuesta`);
 
 --
 -- Indices de la tabla `rol`
@@ -307,26 +343,37 @@ ALTER TABLE `usuario_encuesta`
 --
 ALTER TABLE `encuesta`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
   MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `respuesta_alumno1`
+--
+ALTER TABLE `respuesta_alumno1`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -357,6 +404,13 @@ ALTER TABLE `respuesta_alumno`
   ADD CONSTRAINT `id_opcion_resp_FK` FOREIGN KEY (`id_opcion`) REFERENCES `opciones` (`id_opcion`) ON UPDATE CASCADE,
   ADD CONSTRAINT `id_preg_resp` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_respFK` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`nombre_usuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuesta_alumno1`
+--
+ALTER TABLE `respuesta_alumno1`
+  ADD CONSTRAINT `id_respuestaFK` FOREIGN KEY (`id_respuesta`) REFERENCES `respuesta` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_usuarioFK1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`nombre_usuario`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`

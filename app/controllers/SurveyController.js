@@ -29,13 +29,14 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	}
 
 	$scope.submit = function(){
+		var payload = {
+			comb: jQuery("form#survey").serialize().split("&").map((x) => x.split("=")).map((x) => x[1]).join(),
+			resp: $scope.data.customAnswer,
+			repe: false,
+			survey_id: $scope.currentSurvey.id,
+			user_id: $rootScope.userData.id
+		}
 		if($rootScope.userData.rol == "administrador"){
-			var payload = {
-				comb: jQuery("form#survey").serialize().split("&").map((x) => x.split("=")).map((x) => x[1]).join(),
-				resp: $scope.data.customAnswer,
-				repe: false,
-				survey_id: $scope.currentSurvey.id
-			}
 			$webService.sendCustomAnswer(payload)
 			.then(function(response){
 				if(response.data.repeated){
@@ -62,10 +63,12 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 
 			})
 		}else{
-			alert("I'm an student!")
-			/*
-			*  Code of student
-			*/
+			$webService.sendAnswers(payload)
+			.then(function(response){
+				console.log(response.data)
+			})
+			.catch(function(error){
+			});
 		}
 	}
 

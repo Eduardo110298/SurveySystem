@@ -16,11 +16,15 @@
 				</ul>
 			</li>
 		</ol>
-		<h5>Respuesta:</h5>
 		<div ng-if="userData.rol=='administrador'">
+			<h5>Respuesta:</h5>
 			<textarea ng-model="data.customAnswer" class="form-control" rows="20" style="width:70%;margin-left: 3px;"></textarea>
 			<br/>
 		</div>
-		<button style="margin-left: 3px" class="btn btn-success" type="submit">{{ userData.rol == "administrador"? "Configurar" : "Enviar" }}</button>
+		<button style="margin-left: 3px;margin-bottom: 3px" class="btn btn-success" type="submit">{{ userData.rol == "administrador"? "Configurar" : "Enviar" }}</button>
 	</form>
+	<div id="response" style="overflow: scroll; height:90vh; display: none;">
+		<h5>Respuesta:</h5>
+		<p></p>
+	</div>
 </div>

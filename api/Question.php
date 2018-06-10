@@ -51,6 +51,35 @@
 			}
 			mysqli_close($this->db);
 		}
+
+		function is_assoc($test) {
+	        if (empty($test)) { return(false); }
+	        if (!is_array($test)) { return(false); }
+	        return ($test !== array_values($test));
+		}
+
+		function getAnswer($data){
+			$sql = "SELECT * FROM respuesta WHERE id_encuesta = '$data->survey_id' ORDER BY CHAR_LENGTH(combinacion) ASC";
+			$result = $this->query($sql);
+			
+			$user_comb_array = explode(",",$data->comb);
+			$all_comb_array = ($result) ? ((!$this->is_assoc($result))? $result : array($result)) : array();
+			
+			foreach($all_comb_array as $comb_bag){
+				if (count(array_unique(array_merge(explode(",",$comb_bag["combinacion"]),$user_comb_array))) == count(explode(",",$comb_bag["combinacion"]))){
+					$comb_bag_id = $comb_bag["id"];
+					$sql = "INSERT INTO respuesta_alumno1(id_respuesta,id_usuario,opciones) VALUES('$comb_bag_id','$data->user_id','$data->comb')";
+					return $comb_bag["respuesta"];
+				}
+			}
+
+			return "Por favor contactenos para atender mas detalladamente su caso";
+		}
+
+		function saveAnswers(){
+			$data = $this->data;
+			echo json_encode($this->getAnswer($data));
+		}
 	}
 
 	$question = new Question();
