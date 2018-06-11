@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2018 a las 01:33:08
+-- Tiempo de generación: 11-06-2018 a las 05:27:58
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -171,8 +171,7 @@ CREATE TABLE `respuesta` (
 --
 
 INSERT INTO `respuesta` (`id`, `respuesta`, `id_encuesta`, `combinacion`) VALUES
-(33, 'Mergue', 1, '1,3,7,11,14,17,20,23,26,29,32,35'),
-(34, 'Modelo de respuesta 2', 1, '1,4,7,11,14,17,20,23,26,29,32,35');
+(1, 'Por favor contactenos para atender mas detalladamente su caso', 1, '');
 
 -- --------------------------------------------------------
 
@@ -198,6 +197,13 @@ CREATE TABLE `respuesta_alumno1` (
   `id_usuario` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `opciones` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `respuesta_alumno1`
+--
+
+INSERT INTO `respuesta_alumno1` (`id`, `id_respuesta`, `id_usuario`, `opciones`) VALUES
+(9, 1, 'Eduardo', '1,3,7,11,14,18,21,24,27,29,32,35');
 
 -- --------------------------------------------------------
 
@@ -356,13 +362,13 @@ ALTER TABLE `pregunta`
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `respuesta_alumno1`
 --
 ALTER TABLE `respuesta_alumno1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

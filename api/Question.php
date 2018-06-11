@@ -73,7 +73,8 @@
 					return $comb_bag["respuesta"];
 				}
 			}
-
+			$sql = "INSERT INTO respuesta_alumno1(id_respuesta,id_usuario,opciones) VALUES('1','$data->user_id','$data->comb')";
+			$result = $this->exec($sql);
 			return "Por favor contactenos para atender mas detalladamente su caso";
 		}
 
