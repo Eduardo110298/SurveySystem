@@ -82,7 +82,37 @@
 			$data = $this->data;
 			echo json_encode($this->getAnswer($data));
 		}
+		function getDoneSurveys(){
+			$rol = $_GET["rol"];
+			$nombre_usuario = $_GET["nombre_usuario"];
+			if($rol == "administrador"){
+				$sql = "SELECT * FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta";
+				$result = $this->query($sql);
+				echo json_encode($result);
+			}else{
+				$sql = "SELECT * FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta WHERE id_usuario = '$nombre_usuario'";
+				$result = $this->query($sql);
+				echo json_encode($result);
+			}
+		}
+
+		function getSurveyResult(){
+			$data = $this->data;
+			$id_respuesta_alumno1 = $data->id_respuesta_alumno1;
+			$sql = "SELECT * FROM respuesta_alumno1 WHERE id = '$id_respuesta_alumno1'";
+			$result = $this->query($sql);
+			$opciones = explode(",", $result["opciones"]);
+			$response = array();
+			foreach ($opciones as $opcion_id){
+				$sql = "SELECT pregunta.pregunta, opciones.opcion FROM pregunta JOIN opciones ON pregunta.id = opciones.id_pregunta WHERE opciones.id_opcion = '$opcion_id'";
+				$result = $this->query($sql);
+				array_push($response, $result);
+			}
+			$this->utf8_string_array_encode($result);
+			echo json_encode($response);
+		}
 	}
+
 
 	$question = new Question();
 	call_user_func(array($question ,$_REQUEST['method']));

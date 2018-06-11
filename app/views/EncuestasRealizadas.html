@@ -12,10 +12,10 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr ng-repeat="survey in surveys">
+	      <tr ng-repeat="survey in doneSurveys">
 	        <td>{{ survey.id }}</td>
 	        <td>{{ survey.nombre }}</td>
-	        <td class="action"><a class="btn btn-primary" ng-click="action(survey)">{{ userData.rol == "administrador"? "Configurar" : "Participar" }}</a></td>
+	        <td class="action"><a class="btn btn-primary" ng-click="viewDetails(survey)">Ver</a></td>
 	      </tr>
 	    </tbody>
 	  </table>

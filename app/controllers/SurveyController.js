@@ -18,6 +18,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	$scope.traerPreguntas = function(){
 		$webService.getQuestions($scope.currentSurvey.id)
 		.then(function(response){
+			console.log(response.data)
 			$scope.questions = response.data
 		})
 		.catch(function(error){
@@ -66,7 +67,10 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 			$webService.sendAnswers(payload)
 			.then(function(response){
 				alert("Datos Guardados!")
-				$scope.data.customAnswer = response.data
+				var texto = response.data
+				$scope.data.customAnswer = texto
+				var text = decodeURIComponent(JSON.parse(jQuery("#response p")[0].innerText))
+				jQuery("#response p")[0].innerText = text
 				jQuery("#survey").slideToggle();
 				jQuery("#response").slideToggle();
 			})
@@ -89,4 +93,20 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	}
 
 
+	$scope.getDoneSurveys = function(){
+		$webService.getDoneSurveys($rootScope.userData)
+		.then(function(response){
+			console.log(response.data)
+			$scope.doneSurveys = []
+			if(!Array.isArray(response.data)){
+				$scope.doneSurveys.push(response.data)
+			}else{
+				$scope.doneSurveys = response.data
+			}
+		})
+		.catch(function(error){
+
+		});
+	}
+	$scope.getDoneSurveys()
 });
