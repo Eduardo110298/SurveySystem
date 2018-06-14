@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2018 a las 05:27:58
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 7.2.5
+-- Tiempo de generación: 14-06-2018 a las 22:52:27
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -171,7 +171,9 @@ CREATE TABLE `respuesta` (
 --
 
 INSERT INTO `respuesta` (`id`, `respuesta`, `id_encuesta`, `combinacion`) VALUES
-(1, 'Por favor contactenos para atender mas detalladamente su caso', 1, '');
+(1, 'Por favor contactenos para atender mas detalladamente su caso.\r\nGracias', 1, ''),
+(39, 'Empoderamiento y Prosocialidad:\nPrimeramente debe acudir a la coordinaciÃ³n de informÃ¡tica, en la cual solicite toda la informaciÃ³n sobre su carrera: pensum, oficinas de denuncia, profesores y su preparaciÃ³n acadÃ©mica, beneficios universitarios (becas, comedor, transporte, carnet, seguro mÃ©dico, entre otros), orientaciÃ³n sobre su escuela, la ubicaciÃ³n de los salones y su respectiva identificaciÃ³n, el nombre de los edificios y/o oficinas junto con su ubicaciÃ³n.\nSi existen profesores que se niegan a dar la ayuda que necesita, dirÃ­jase a la coordinaciÃ³n de informÃ¡tica; en caso de tampoco ser atendido puede acudir al jefe(a) de la Escuela de IngenierÃ­a y Ciencias Aplicadas planteando la situaciÃ³n que se le haya presentado; en caso de tampoco ser atendido debe ir a la oficina de â€œBienestar Estudiantilâ€.\nRecomiendo realizar sus quejas y/o solicitudes siempre por escrito con una hoja original y una copia donde solicite a quienes se la entregÃ³ firmarla de recibido con fecha incluida como aval, en caso de no recibir respuesta (dependiendo de su solicitud) en 10 o 15 dÃ­as recurra a la una prÃ³xima oficina de acuerdo a la escala antes mencionada. \nEsto se realiza con la finalidad de proveer las herramientas necesarias para aumentar sus fortalezas, mejorar sus capacidades de confianza en la instituciÃ³n y seguridad en sÃ­ mismo(a); asÃ­ como impulsar la importancia de la toma de decisiones que afecten a su vida positivamente, desarrollando capacidades y habilidades que puedan hacer valer su rol y mejorar su situaciÃ³n en tÃ©rminos de derechos sociales.', 1, '1,2,3,7,11,12,14,15,17,18,20,21,23,24,26,27,29,30,32,33,35,36'),
+(41, 'titulo idiota que falta poner\nhola,mergue', 1, '1,2,6,8,11,14,17,20,23,26,29,32,35');
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,7 @@ CREATE TABLE `respuesta_alumno1` (
 --
 
 INSERT INTO `respuesta_alumno1` (`id`, `id_respuesta`, `id_usuario`, `opciones`) VALUES
-(9, 1, 'Eduardo', '1,3,7,11,14,18,21,24,27,29,32,35');
+(87, 1, 'Ines', '2,3,7,11,14,17,20,23,26,31,32,35');
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,9 @@ INSERT INTO `usuario` (`nombre`, `apellido`, `nombre_usuario`, `clave`, `pregunt
 ('Ines alejan', 'Natera', 'Ines', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', '*E33729014FEFB64F5F8AD54615B0B514C1C35B44', 1),
 ('Ines', 'Natera', 'Ines1', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'perro', 'balto', 1),
 ('Maria', 'Luna', 'Maria', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'mi hermano', 'andres', 1),
-('Administrador', 'Principal', 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de Usuario', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 2);
+('Rahylem', 'Jimenez', 'Rahylem', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'nombre de mi papa', '*9B1DDB7BB214F9ED335026479D27FAE7F8765A31', 1),
+('Administrador', 'Principal', 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'Nombre de Usuario', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 2),
+('Hilary', 'Alzate', 'hilary', '*A4B6157319038724E3560894F7F932C8886EBFCF', 'nombre de mi perro', '*130AFB371C00704844C324721EA1DFCE2E93232F', 1);
 
 -- --------------------------------------------------------
 
@@ -345,37 +349,31 @@ ALTER TABLE `usuario_encuesta`
 --
 ALTER TABLE `encuesta`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
   MODIFY `id_opcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT de la tabla `respuesta`
 --
 ALTER TABLE `respuesta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `respuesta_alumno1`
 --
 ALTER TABLE `respuesta_alumno1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- Restricciones para tablas volcadas
 --
