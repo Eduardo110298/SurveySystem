@@ -67,6 +67,7 @@
 			
 			foreach($all_comb_array as $comb_bag){
 				if (count(array_unique(array_merge(explode(",",$comb_bag["combinacion"]),$user_comb_array))) == count(explode(",",$comb_bag["combinacion"]))){
+
 					$comb_bag_id = $comb_bag["id"];
 					$sql = "INSERT INTO respuesta_alumno1(id_respuesta,id_usuario,opciones) VALUES('$comb_bag_id','$data->user_id','$data->comb')";
 					$result = $this->exec($sql);
@@ -86,11 +87,11 @@
 			$rol = $_GET["rol"];
 			$nombre_usuario = $_GET["nombre_usuario"];
 			if($rol == "administrador"){
-				$sql = "SELECT * FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta";
+				$sql = "SELECT respuesta_alumno1.id AS id_respuesta_alumno1, encuesta.nombre FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta";
 				$result = $this->query($sql);
 				echo json_encode($result);
 			}else{
-				$sql = "SELECT * FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta WHERE id_usuario = '$nombre_usuario'";
+				$sql = "SELECT respuesta_alumno1.id AS id_respuesta_alumno1, encuesta.nombre FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta JOIN encuesta ON encuesta.id = respuesta.id_encuesta WHERE id_usuario = '$nombre_usuario'";
 				$result = $this->query($sql);
 				echo json_encode($result);
 			}
@@ -108,7 +109,7 @@
 				$result = $this->query($sql);
 				array_push($response, $result);
 			}
-			$this->utf8_string_array_encode($result);
+			$this->utf8_string_array_encode($response);
 			echo json_encode($response);
 		}
 	}

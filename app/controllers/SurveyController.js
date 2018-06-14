@@ -18,7 +18,6 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	$scope.traerPreguntas = function(){
 		$webService.getQuestions($scope.currentSurvey.id)
 		.then(function(response){
-			console.log(response.data)
 			$scope.questions = response.data
 		})
 		.catch(function(error){
@@ -26,7 +25,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	}
 
 	$scope.data = {
-		customAnswer: ""
+		customTitle:""
 	}
 
 	$scope.submit = function(){
@@ -48,6 +47,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 							.then(function(response){
 								if (response.data.success) {
 									alert("Datos Guardados!")	
+									$window.location.href = "/SurveySystem/"
 								}
 							})
 							.catch(function(error){
@@ -57,6 +57,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 				}else{
 					if (response.data.success) {
 						alert("Datos Guardados!")	
+						$window.location.href = "/SurveySystem/"
 					}
 				}
 			})
@@ -67,12 +68,19 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 			$webService.sendAnswers(payload)
 			.then(function(response){
 				alert("Datos Guardados!")
-				var texto = response.data
-				$scope.data.customAnswer = texto
-				var text = decodeURIComponent(JSON.parse(jQuery("#response p")[0].innerText))
-				jQuery("#response p")[0].innerText = text
-				jQuery("#survey").slideToggle();
-				jQuery("#response").slideToggle();
+				try{
+					var textoBruto = response.data
+					$scope.data.customTitle = textoBruto.split("\\n")[0].substr(1)
+					textoBruto = textoBruto.split("\\n")
+					textoBruto.shift()
+					textoBruto = "\"" + textoBruto.join("\\n")
+					jQuery("#response p")[1].innerText = JSON.parse(textoBruto).substr(0, textoBruto.length - 2)
+					jQuery("#survey").slideToggle();
+					jQuery("#response").slideToggle();
+			 	}
+				catch(error){
+					console.log(error.message)
+				}
 			})
 			.catch(function(error){
 			});
@@ -96,7 +104,6 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 	$scope.getDoneSurveys = function(){
 		$webService.getDoneSurveys($rootScope.userData)
 		.then(function(response){
-			console.log(response.data)
 			$scope.doneSurveys = []
 			if(!Array.isArray(response.data)){
 				$scope.doneSurveys.push(response.data)
@@ -109,4 +116,27 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		});
 	}
 	$scope.getDoneSurveys()
+
+
+	$scope.traerResultados = function(){
+		$webService.getSurveyResult($scope.currentDetailSurvey)
+		.then(function(response){
+			$scope.questions = response.data
+		})
+		.catch(function(error){
+		})
+	}
+
+	$scope.viewDetails = function(survey){
+		$scope.currentDetailSurvey = survey
+		$webService.getHTML("DetallesEncuesta")
+		.then(function(response){
+			$scope.traerResultados()
+			document.getElementById("content").innerHTML = response.data
+			$compile(document.getElementById("content"))($scope);
+		})
+		.catch(function(error){
+
+		})
+	}
 });

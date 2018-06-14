@@ -51,5 +51,9 @@ app.factory("$webService", function($http, $window){
 		return $http.get("api/Question.php?method=getDoneSurveys&rol=" + user.rol + "&nombre_usuario="+user.nombre_usuario)
 	}
 
+	this.getSurveyResult = function(currentSurvey){
+		return $http.post("api/Question.php?method=getSurveyResult", currentSurvey)
+	}
+
 	return this;
 });
