@@ -59,35 +59,35 @@ if(isset($_SESSION['user'])){
 					<div class="col-md-4">
 						<div class="form-group">
 							<label><b>Nombre</b></label>
-							<input class="form-control" ng-model="newUser.firstName" type="text">
+							<input required class="form-control" ng-model="newUser.firstName" type="text" >
 						</div>
 						<div class="form-group">
 							<label><b>Apellido</b></label>
-							<input class="form-control" ng-model="newUser.lastName" type="text">
+							<input required class="form-control" ng-model="newUser.lastName" type="text">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label><b>Usuario</b></label>
-							<input class="form-control" ng-model="newUser.user" type="text">
+							<label ><b>Usuario</b></label>
+							<input required class="form-control" ng-model="newUser.user" type="text">
 						</div>
 						<div class="form-group">
 							<label><b>Contraseña</b></label>
-							<input class="form-control" ng-model="newUser.pass" type="password">
+							<input required class="form-control" ng-model="newUser.pass" type="password">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label><b>Pregunta de seguridad</b></label>
-							<input class="form-control" ng-model="newUser.question" type="text">
+							<input required class="form-control" ng-model="newUser.question" type="text">
 						</div>
 						<div class="form-group">
 							<label><b>Respuesta</b></label>
-							<input class="form-control" ng-model="newUser.answer" type="text">
+							<input required class="form-control" ng-model="newUser.answer" type="text">
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-primary" ng-click="submitRegistryData()">Registrarse</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="toggleForms($event)">Iniciar sesión</button>
+				<button class="btn btn-primary" type="submit" ng-click="submitRegistryData()">Registrarse</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-default" ng-click="toggleForms($event)">Iniciar sesión</button>
 			</form>
 		</div>
 	</div>

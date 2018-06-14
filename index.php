@@ -102,8 +102,17 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 					<div class="page-header">
 						<h3>Bienvenido</h3>
 					</div>
-						Buenas días/tardes soy estudiante de la Escuela de Criminología de la Universidad de los Andes y estoy desarrollando una investigación sobre los factores sociales que afecten el desempeño individual y/o comunitario de los estudiantes en su institución académica; y al mismo tiempo ofrecer una asesoría o intervención criminológica que les permita identificar dichos elementos y las posibles soluciones que podrían orientarlos para la mejora de los factores expuestos.
-						Agradezco toda su colaboración para que me ayude a completar el instrumento que es totalmente ANÓNIMO, respondiendo las preguntas que aparecen a continuación. Sin más que agregar gracias de antemano:   
+					<div style="text-align: justify; line-height: 26px; padding: 20px 50px 20px 20px">
+						Buenas días/tardes soy estudiante de la Escuela de Criminología de la Universidad de los Andes y estoy desarrollando una investigación sobre los factores sociales que afecten el desempeño individual y/o comunitario de los estudiantes en su institución académica; y al mismo tiempo ofrecer una asesoría o intervención criminológica que les permita identificar dichos elementos y las posibles soluciones que podrían orientarlos para la mejora de los factores expuestos.<br/>
+						Agradezco toda su colaboración para que me ayude a completar el instrumento que es totalmente ANÓNIMO, participando en las encuestas que tendran disponible haciendo click en la seccion de Encuestas por Hacer.<br/> 
+						Sin más que agregar gracias de antemano.  
+					<br/>
+					<br/>
+						<p style="font-style: italic;">
+							<b>Br. Rahylem Jiménez</b><br/>
+							rahylem26@gmail.com
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
