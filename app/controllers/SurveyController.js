@@ -67,6 +67,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		}else{
 			$webService.sendAnswers(payload)
 			.then(function(response){
+				console.log(response.data)
 				alert("Datos Guardados!")
 				try{
 					var textoBruto = response.data
@@ -74,6 +75,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 					textoBruto = textoBruto.split("\\n")
 					textoBruto.shift()
 					textoBruto = "\"" + textoBruto.join("\\n")
+					console.log(textoBruto)
 					jQuery("#response p")[1].innerText = JSON.parse(textoBruto).substr(0, textoBruto.length - 2)
 					jQuery("#survey").slideToggle();
 					jQuery("#response").slideToggle();
@@ -106,7 +108,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 		.then(function(response){
 			$scope.doneSurveys = []
 			if(!Array.isArray(response.data)){
-				$scope.doneSurveys.push(response.data)
+				if(response.data != "false") $scope.doneSurveys.push(response.data)
 			}else{
 				$scope.doneSurveys = response.data
 			}
