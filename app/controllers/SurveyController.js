@@ -71,7 +71,7 @@ app.controller("SurveyController", function($scope, $webService, $window, $compi
 				alert("Datos Guardados!")
 				try{
 					var textoBruto = response.data
-					$scope.data.customTitle = textoBruto.split("\\n")[0].substr(1)
+					$scope.data.customTitle = JSON.parse(textoBruto.split("\\n")[0] + "\"")
 					textoBruto = textoBruto.split("\\n")
 					textoBruto.shift()
 					textoBruto = "\"" + textoBruto.join("\\n")
