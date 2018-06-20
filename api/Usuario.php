@@ -12,15 +12,20 @@
 		}
 
 		function login(){
-			$data = $this->data;
-			$sql = "SELECT * FROM usuario JOIN rol ON rol.id = usuario.id_rol WHERE usuario.nombre_usuario = '$data->user' AND usuario.clave = PASSWORD('$data->pass')";
-			$result = $this->query($sql);
-			if($result){
-				$_SESSION['user'] = $result;
+			try {
+   				$data = $this->data;
+				$sql = "SELECT * FROM usuario JOIN rol ON rol.id = usuario.id_rol WHERE usuario.nombre_usuario = '$data->user' AND usuario.clave = PASSWORD('$data->pass')";
+				$result = $this->query($sql);
+				if($result){
+					$_SESSION['user'] = $result;
+				}
+				$response['found'] = !empty($result);
+				echo json_encode($response);
+				mysqli_close($this->db);	
+			} catch (Exception $e) {
+    				echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			}
-			$response['found'] = !empty($result);
-			echo json_encode($response);
-			mysqli_close($this->db);
+			
 		}
 
 		function register(){

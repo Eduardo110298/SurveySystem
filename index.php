@@ -109,7 +109,7 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 					<br/>
 					<br/>
 						<p style="font-style: italic;">
-							<b>Br. Rahylem Jiménez</b><br/>
+							<b>Pasante Rahylem Jiménez</b><br/>
 							rahylem26@gmail.com
 						</p>
 					</div>

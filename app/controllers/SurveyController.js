@@ -1,4 +1,4 @@
-app.controller("SurveyController", function($scope, $webService, $window, $compile, $rootScope) {
+﻿app.controller("SurveyController", function($scope, $webService, $window, $compile, $rootScope) {
 	$scope.traerEncuestas = function(){
 		$webService.getSurveys($rootScope.userData.nombre_usuario)
 		.then(function(response){
