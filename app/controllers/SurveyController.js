@@ -75,7 +75,7 @@
 					textoBruto = textoBruto.split("\\n")
 					textoBruto.shift()
 					textoBruto = "\"" + textoBruto.join("\\n")
-					console.log(textoBruto)
+					// console.log(textoBruto)
 					jQuery("#response p")[1].innerText = JSON.parse(textoBruto).substr(0, textoBruto.length - 2)
 					jQuery("#survey").slideToggle();
 					jQuery("#response").slideToggle();
@@ -123,8 +123,20 @@
 	$scope.traerResultados = function(){
 		$webService.getSurveyResult($scope.currentDetailSurvey)
 		.then(function(response){
-			console.log(response.data.res)
+			// console.log(response.data)
+			try	{
 			$scope.questions = response.data.res
+			var textoBruto = JSON.stringify(response.data.intervencion)
+			// console.log(textoBruto.split("\\n"))
+			// console.log(JSON.parse(textoBruto.split("\\n")[0] + "\""))
+			jQuery("#intervencion p b")[0].innerText = decodeURIComponent(escape(textoBruto.split("\\n")[0])).substr(1)
+			textoBruto = textoBruto.split("\\n")
+			textoBruto.shift()
+			textoBruto = "\"" + textoBruto.join("\\n")
+			jQuery("#intervencion p")[1].innerText = decodeURIComponent(escape(JSON.parse(textoBruto).substr(0, textoBruto.length - 2)))
+		}catch(e){
+			console.log(e.message)
+		}
 		})
 		.catch(function(error){
 		})
@@ -142,4 +154,64 @@
 
 		})
 	}
+
+	$scope.viewComb = function(combination){
+		$scope.currentDetailCombination = combination
+		$webService.getHTML("DetallesCombinaciones")
+		.then(function(response){
+			$scope.traerCombs()
+			document.getElementById("content").innerHTML = response.data
+			$compile(document.getElementById("content"))($scope);
+		})
+		.catch(function(error){
+		})
+	}
+
+	$scope.traerCombs = function(){
+		$webService.getCombinationResult($scope.currentDetailCombination)
+		.then(function(response){
+			console.log(response.data)
+		// 	// console.log(response.data)
+		// 	try	{
+		// 	$scope.questions = response.data.res
+		// 	var textoBruto = JSON.stringify(response.data.intervencion)
+		// 	// console.log(textoBruto.split("\\n"))
+		// 	// console.log(JSON.parse(textoBruto.split("\\n")[0] + "\""))
+		// 	jQuery("#intervencion p b")[0].innerText = decodeURIComponent(escape(textoBruto.split("\\n")[0])).substr(1)
+		// 	textoBruto = textoBruto.split("\\n")
+		// 	textoBruto.shift()
+		// 	textoBruto = "\"" + textoBruto.join("\\n")
+		// 	jQuery("#intervencion p")[1].innerText = decodeURIComponent(escape(JSON.parse(textoBruto).substr(0, textoBruto.length - 2)))
+		// }catch(e){
+		// 	console.log(e.message)
+		// }
+		})
+		.catch(function(error){
+		})
+	}
+
+	$scope.getDoneCombs = function(){
+		$webService.getDoneCombs()
+		.then(function(response){
+			try{
+				var combBruto = []
+				if(!Array.isArray(response.data)){
+					if(response.data != "false") combBruto.push(response.data)
+				}else{
+					combBruto = response.data
+				}
+
+				combBruto.forEach(function(comb){ 
+					comb.title = JSON.parse(JSON.stringify(comb.respuesta).split("\\n")[0]+"\"")
+					comb.title = comb.title.substr(0,comb.title.length-1)
+				})
+				$scope.combinations = combBruto
+			}catch(e){
+			}
+		})
+		.catch(function(error){
+
+		});
+	}
+	$scope.getDoneCombs()
 });

@@ -88,6 +88,11 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 				    <li ng-controller="MenuController">
 				    	<a id="EncuestasRealizadas" ng-click="obtener($event)">Encuestas Hechas</a>
 				    </li>
+				    <div ng-if="userData.rol=='administrador'">
+					    <li ng-controller="MenuController">
+					    	<a id="Combinaciones" ng-click="obtener($event)">Combinaciones</a>
+					    </li>
+				    </div>
 				    <li ng-controller="MenuController">
 				    	<a id="Datos" ng-click="obtener($event)">Mis datos</a>
 				    </li>

@@ -1,13 +1,13 @@
 <div ng-controller="SurveyController" style="padding-top:10px">
 	<div class="page-header">
-	  <h3>Detalles de encuesta</h3>
+	  <h3>Detalles de Combinacion</h3>
 	</div>
 
 	<div style = "overflow: scroll; height:90vh">
 	
 		<ol>
 			<br/>
-			<li ng-repeat = "question in questions">
+			<li ng-repeat = "question in preguntas">
 				<span style= "font-weight: bold;">{{question.pregunta}}</span>
 				<br/>
 				<span>{{question.opcion}}</span>

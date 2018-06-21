@@ -1,0 +1,24 @@
+<div ng-controller="SurveyController" style="padding-top:10px">
+	<div class="page-header">
+	  <h3 >Combinaciones Guardadas</h3>
+	</div>
+	<div class="table-responsive" style="overflow: scroll; height:90vh">
+		<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Número</th>
+	        <th>Título</th>
+	        <th>Acción</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="combination in combinations">
+	        <td>{{ combination.id }}</td>
+	        <td ng-if="combination.id != 1">{{ combination.title }}</td>
+	        <td ng-if="combination.id == 1">{{ combination.title.substr(0, combination.title.length - 1) }}</td>
+	        <td class="action"><a class="btn btn-primary" ng-click="viewComb(combination)">Ver</a></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</div>
+</div>

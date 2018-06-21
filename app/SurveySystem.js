@@ -55,5 +55,13 @@ app.factory("$webService", function($http, $window){
 		return $http.post("api/Question.php?method=getSurveyResult", currentSurvey)
 	}
 
+	this.getCombinationResult = function(currentSurvey){
+		return $http.post("api/Question.php?method=getCombResult", currentSurvey)
+	}
+
+	this.getDoneCombs = function(){
+		return $http.get("api/Question.php?method=getDoneCombs");
+	}
+
 	return this;
 });

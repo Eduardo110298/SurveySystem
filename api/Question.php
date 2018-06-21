@@ -114,6 +114,24 @@
 			}
 		}
 
+		function getDoneCombs(){
+			$sql = "SELECT * FROM respuesta";
+			$result = $this->query($sql);
+			echo json_encode($result);
+		}
+
+		function getCombResult(){
+			$data = $this->data;
+			$id_comb = $data->id;
+			$sql = "SELECT * FROM respuesta WHERE id = $id_comb";
+			$result = $this->query($sql);
+			
+			
+			
+			echo json_encode($result);
+		}
+
+
 		function getSurveyResult(){
 			$data = $this->data;
 			$id_respuesta_alumno1 = $data->id_respuesta_alumno1;
