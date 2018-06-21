@@ -49,6 +49,23 @@
 					echo json_encode($result);
 				}
 			}
+ 
+ 			$sql = "SELECT * FROM respuesta WHERE combinacion = $data->comb";
+ 			$result = $this->query($sql);
+			$new_comb_id = $result["id"];
+			$new_comb = explode(",",$data->comb);
+
+			$sql = "SELECT * FROM respuesta_alumno1 WHERE id_respuesta = 1";
+			$respuestas = $this->query($sql);
+			$respuestas = $this->is_assoc($respuestas)? array($respuestas) : $respuestas;
+			
+			foreach($respuestas as $row){
+				$user_comb = explode(",",$row["opciones"]);
+				$username = $row["id_usuario"];
+				if (count(array_unique(array_merge($new_comb,$user_comb))) == count($new_comb)){
+					$sql = "UPDATE respuesta_alumno1 SET id_respuesta = $new_comb_id WHERE id_usuario = $username";
+				}
+			}
 			mysqli_close($this->db);
 		}
 
