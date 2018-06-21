@@ -5,6 +5,7 @@ if(isset($_SESSION['user'])){
 }
 ?>
 <!DOCTYPE html>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 <html ng-app="SurveySystem">
 <head>
 	<script src="resources/jquery/3.3.1/jquery-3.3.1.min.js"></script>

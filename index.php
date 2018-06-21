@@ -7,6 +7,7 @@ if(!isset($_SESSION['user'])){ //if login in session is not set
 ?>
 
 <!DOCTYPE html>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 <html ng-app="SurveySystem">
 <head>
 	<meta charset="utf-8">
