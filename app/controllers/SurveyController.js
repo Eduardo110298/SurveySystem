@@ -123,7 +123,8 @@
 	$scope.traerResultados = function(){
 		$webService.getSurveyResult($scope.currentDetailSurvey)
 		.then(function(response){
-			$scope.questions = response.data
+			console.log(response.data.res)
+			$scope.questions = response.data.res
 		})
 		.catch(function(error){
 		})

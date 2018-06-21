@@ -117,15 +117,18 @@
 		function getSurveyResult(){
 			$data = $this->data;
 			$id_respuesta_alumno1 = $data->id_respuesta_alumno1;
-			$sql = "SELECT * FROM respuesta_alumno1 WHERE id = '$id_respuesta_alumno1'";
+			$sql = "SELECT respuesta_alumno1.opciones, respuesta.respuesta FROM respuesta_alumno1 JOIN respuesta ON respuesta.id = respuesta_alumno1.id_respuesta WHERE respuesta_alumno1.id = '$id_respuesta_alumno1'";
 			$result = $this->query($sql);
+			//echo json_encode($result);
 			$opciones = explode(",", $result["opciones"]);
-			$response = array();
+			$intervencion = $result["respuesta"];
+			$response["res"] = array();
 			foreach ($opciones as $opcion_id){
 				$sql = "SELECT pregunta.pregunta, opciones.opcion FROM pregunta JOIN opciones ON pregunta.id = opciones.id_pregunta WHERE opciones.id_opcion = '$opcion_id'";
 				$result = $this->query($sql);
-				array_push($response, $result);
+				array_push($response["res"], $result);
 			}
+			$response["intervencion"] = $intervencion;
 			$this->utf8_string_array_encode($response);
 			echo json_encode($response);
 		}
