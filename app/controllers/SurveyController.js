@@ -171,20 +171,18 @@
 		$webService.getCombinationResult($scope.currentDetailCombination)
 		.then(function(response){
 			console.log(response.data)
-		// 	// console.log(response.data)
-		// 	try	{
-		// 	$scope.questions = response.data.res
-		// 	var textoBruto = JSON.stringify(response.data.intervencion)
-		// 	// console.log(textoBruto.split("\\n"))
-		// 	// console.log(JSON.parse(textoBruto.split("\\n")[0] + "\""))
-		// 	jQuery("#intervencion p b")[0].innerText = decodeURIComponent(escape(textoBruto.split("\\n")[0])).substr(1)
-		// 	textoBruto = textoBruto.split("\\n")
-		// 	textoBruto.shift()
-		// 	textoBruto = "\"" + textoBruto.join("\\n")
-		// 	jQuery("#intervencion p")[1].innerText = decodeURIComponent(escape(JSON.parse(textoBruto).substr(0, textoBruto.length - 2)))
-		// }catch(e){
-		// 	console.log(e.message)
-		// }
+			$scope.preguntas = response.data.res
+			try	{
+				
+				var textoBruto = JSON.stringify(response.data.intervencion)
+				jQuery("#intervencion p b")[0].innerText = decodeURIComponent(escape(textoBruto.split("\\n")[0])).substr(1)
+				textoBruto = textoBruto.split("\\n")
+				textoBruto.shift()
+				textoBruto = "\"" + textoBruto.join("\\n")
+				jQuery("#intervencion p")[1].innerText = decodeURIComponent(escape(JSON.parse(textoBruto).substr(0, textoBruto.length - 2)))
+			}catch(e){
+				console.log(e.message)
+			}
 		})
 		.catch(function(error){
 		})

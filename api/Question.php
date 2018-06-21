@@ -125,10 +125,16 @@
 			$id_comb = $data->id;
 			$sql = "SELECT * FROM respuesta WHERE id = $id_comb";
 			$result = $this->query($sql);
-			
-			
-			
-			echo json_encode($result);
+			$response["intervencion"] = $result["respuesta"];
+			$opciones = explode(",", $result["combinacion"]);
+			$response["res"] = array();
+			foreach ($opciones as $opcion_id){
+				$sql = "SELECT pregunta.pregunta, opciones.opcion FROM pregunta JOIN opciones ON pregunta.id = opciones.id_pregunta WHERE opciones.id_opcion = '$opcion_id'";
+				$result = $this->query($sql);
+				array_push($response["res"], $result);
+			}
+			$this->utf8_string_array_encode($response);
+			echo json_encode($response);
 		}
 
 
